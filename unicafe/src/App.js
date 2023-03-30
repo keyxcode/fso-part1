@@ -21,8 +21,13 @@ const App = () => {
   const increaseBadRating = () => setBad(bad + 1);
 
   const totalRatings = good + neutral + bad;
-  const averageRating = (good * 1 + neutral * 0 + bad * -1) / totalRatings;
-  const positivePercentage = `${(good / totalRatings) * 100} %`;
+  const averageRating = totalRatings
+    ? (good * 1 + neutral * 0 + bad * -1) / totalRatings
+    : "N/A";
+  const positivePercentage = totalRatings
+    ? `${(good / totalRatings) * 100} %`
+    : "N/A";
+
   return (
     <div>
       <h1>Give feedback</h1>
