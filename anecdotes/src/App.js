@@ -31,9 +31,13 @@ const App = () => {
   const maxVote = Math.max(...ratings);
   const idOfMaxVote = ratings.findIndex((vote) => vote === maxVote);
 
-  const randomizeState = () => {
-    const random = Math.floor(Math.random() * anecdotesLength);
-    setSelected(random);
+  const randomizeSelected = () => {
+    while (true) {
+      const random = Math.floor(Math.random() * anecdotesLength);
+      if (random === selected) continue;
+
+      return setSelected(random);
+    }
   };
   const increaseVote = (id) => {
     const copy = [...ratings];
@@ -46,7 +50,7 @@ const App = () => {
       <h1>Anecdote of the day</h1>
       <Anecdote anecdotes={anecdotes} ratings={ratings} id={selected} />
       <Button handleClick={() => increaseVote(selected)} text="vote" />
-      <Button handleClick={randomizeState} text="next anecdote" />
+      <Button handleClick={randomizeSelected} text="next anecdote" />
       <h1>Anecdote with most votes</h1>
       <Anecdote anecdotes={anecdotes} ratings={ratings} id={idOfMaxVote} />
     </div>
