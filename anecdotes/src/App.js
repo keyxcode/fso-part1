@@ -28,8 +28,7 @@ const App = () => {
   const [selected, setSelected] = useState(0);
   const [ratings, setRatings] = useState(anecdoteRatings);
 
-  const maxVote = Math.max(...ratings);
-  const idOfMaxVote = ratings.findIndex((vote) => vote === maxVote);
+  const idOfMaxVote = ratings.indexOf(Math.max(...ratings));
 
   const randomizeSelected = () => {
     while (true) {
