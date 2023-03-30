@@ -16,16 +16,19 @@ const App = () => {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
+  const increaseGoodRating = () => setGood(good + 1);
+  const increaseNeutralRating = () => setNeutral(neutral + 1);
+  const increaseBadRating = () => setBad(bad + 1);
   return (
     <div>
       <h1>Give feedback</h1>
-      <Button handleClick={() => console.log("good")} text="good" />
-      <Button handleClick={() => console.log("neutral")} text="neutral" />
-      <Button handleClick={() => console.log("bad")} text="bad" />
+      <Button handleClick={increaseGoodRating} text="good" />
+      <Button handleClick={increaseNeutralRating} text="neutral" />
+      <Button handleClick={increaseBadRating} text="bad" />
       <h1>Statistics</h1>
-      <Stats statName="good" statNum="0" />
-      <Stats statName="neutral" statNum="0" />
-      <Stats statName="bad" statNum="0" />
+      <Stats statName="good" statNum={good} />
+      <Stats statName="neutral" statNum={neutral} />
+      <Stats statName="bad" statNum={bad} />
     </div>
   );
 };
