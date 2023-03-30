@@ -21,28 +21,37 @@ const App = () => {
   const increaseBadRating = () => setBad(bad + 1);
 
   const totalRatings = good + neutral + bad;
-  const averageRating = totalRatings
-    ? (good * 1 + neutral * 0 + bad * -1) / totalRatings
-    : "N/A";
-  const positivePercentage = totalRatings
-    ? `${(good / totalRatings) * 100} %`
-    : "N/A";
+  const averageRating = (good * 1 + neutral * 0 + bad * -1) / totalRatings;
+  const positivePercentage = (good / totalRatings) * 100;
 
-  return (
-    <div>
-      <h1>Give feedback</h1>
-      <Button handleClick={increaseGoodRating} text="good" />
-      <Button handleClick={increaseNeutralRating} text="neutral" />
-      <Button handleClick={increaseBadRating} text="bad" />
-      <h1>Statistics</h1>
-      <Stats statName="good" statNum={good} />
-      <Stats statName="neutral" statNum={neutral} />
-      <Stats statName="bad" statNum={bad} />
-      <Stats statName="all" statNum={totalRatings} />
-      <Stats statName="average" statNum={averageRating} />
-      <Stats statName="positive" statNum={positivePercentage} />
-    </div>
-  );
+  if (totalRatings !== 0) {
+    return (
+      <div>
+        <h1>Give feedback</h1>
+        <Button handleClick={increaseGoodRating} text="good" />
+        <Button handleClick={increaseNeutralRating} text="neutral" />
+        <Button handleClick={increaseBadRating} text="bad" />
+        <h1>Statistics</h1>
+        <Stats statName="good" statNum={good} />
+        <Stats statName="neutral" statNum={neutral} />
+        <Stats statName="bad" statNum={bad} />
+        <Stats statName="all" statNum={totalRatings} />
+        <Stats statName="average" statNum={averageRating} />
+        <Stats statName="positive" statNum={positivePercentage} />
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <h1>Give feedback</h1>
+        <Button handleClick={increaseGoodRating} text="good" />
+        <Button handleClick={increaseNeutralRating} text="neutral" />
+        <Button handleClick={increaseBadRating} text="bad" />
+        <h1>Statistics</h1>
+        No feedback given
+      </div>
+    );
+  }
 };
 
 export default App;
